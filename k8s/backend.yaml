@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: nilipane23/project:backend
+        ports:
+        - containerPort: 8000
+        env:
+        - name: PORT
+          value: "8000"
+        - name: CLOUD_NAME
+          value: "dqwihpafh"
+        - name: API_KEY
+          value: "325956615186144"
+        - name: API_SECRET
+          value: "pjtHlWgcBEXpKseP6viZgFMcNog"
+        - name: MONGO_URI
+          value: "mongodb://admin:adminpassword@mongodb-service:27017/techdome_db?authSource=admin"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+  type: ClusterIP
