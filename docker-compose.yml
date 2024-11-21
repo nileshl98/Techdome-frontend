@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./Techdome-backend
+    container_name: techdome_backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./Techdome-backend/.env  
+    depends_on:
+      - mongodb
+    networks:
+      - techdome_network
+
+  frontend:
+    build:
+      context: ./Techdome-frontend  
+    container_name: techdome_frontend
+    ports:
+      - "3000:80" 
+    environment:
+      - REACT_APP_BASE_URL=http://18.215.244.232:8000/api
+    networks:
+      - techdome_network
+
+  mongodb:
+    image: mongo:5.0
+    container_name: techdome_mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: adminpassword
+    networks:
+      - techdome_network
+
+networks:
+  techdome_network:
+    driver: bridge
