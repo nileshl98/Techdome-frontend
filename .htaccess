@@ -3,3 +3,4 @@
     RewriteCond %{REQUEST_URI} \.(jpg|jpeg|png|gif)$ [NC]
     RewriteRule ^(.*)$ https://your-cloudfront-domain/$1 [L,R=301]
 </IfModule>
+dsAWFDSF
