@@ -1,4 +1,4 @@
-# Multi-Container Application Deployment on AWS with Docker Compose & Kubernetes (Minikube)
+# Multi-Container Application Deployment on AWS with Docker Compose & Kubernetes 
 
 ## Project Overview
 
